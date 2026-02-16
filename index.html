@@ -1,0 +1,855 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portofolio Saya</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+      };
+    </script>
+
+    <!-- CSS sendiri -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!--LINK CDN AOS-->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <!--LINK CDN AOS END-->
+
+    <!-- Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="bg-white text-gray-900 dark:bg-neutral-900 dark:text-white transition-colors duration-500"
+  >
+    <!-- SPLASH SCREEN -->
+    <div
+      id="splash"
+      class="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden"
+    >
+      <!-- Background animasi -->
+      <div class="absolute inset-0 splash-bg"></div>
+
+      <!-- Lingkaran pulsate -->
+      <div
+        class="w-24 h-24 rounded-full bg-white/10 animate-pulse shadow-lg mb-8 z-10"
+      ></div>
+
+      <!-- Tulisan -->
+      <h1
+        class="text-white text-2xl md:text-4xl font-bold opacity-0 z-10"
+        id="splashText"
+      >
+        Welcome to my Portfolio Website
+      </h1>
+    </div>
+
+    <div class="fixed top-5 w-full flex justify-center z-50">
+      <nav
+        id="navbar"
+        class="fixed top-6 left-1/2 -translate-x-1/2 z-50 bg-neutral-900/80 backdrop-blur-lg border border-white/10 shadow-xl rounded-2xl px-6 py-3 w-[90%] max-w-5xl transition-transform duration-300"
+      >
+        <div class="flex justify-between items-center">
+          <!-- Logo -->
+          <a href="#" class="leading-none">
+            <h1 class="text-l font-bold text-blue-800 leading-none">
+              Mas Apif Muliansyah
+            </h1>
+            <p class="text-sm font-semibold text-white">Portofolio</p>
+          </a>
+
+          <!-- Menu Desktop -->
+          <div class="flex justify-between items-center">
+            <ul
+              class="hidden md:flex space-x-8 items-center gap-2 bg-white/5 backdrop-blur-sm px-2 py-2 rounded-full border border-white/10 text-white"
+            >
+              <li>
+                <a href="#home" class="hover:text-blue-800 transition">Home</a>
+              </li>
+              <li>
+                <a href="#about" class="hover:text-blue-800 transition"
+                  >About</a
+                >
+              </li>
+              <li>
+                <a href="#skills" class="hover:text-blue-800 transition"
+                  >Skills</a
+                >
+              </li>
+              <li>
+                <a href="#projects" class="hover:text-blue-800 transition"
+                  >Projects</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- CTA Desktop -->
+          <a
+            href="mailto:masapif8@gmail.com"
+            class="hidden md:block bg-cyan-500 hover:bg-cyan-600 px-5 py-2 rounded-full transition"
+          >
+            Contact
+          </a>
+
+          <!-- DARK MODE TOGGLE DESKTOP -->
+          <button
+            id="themeToggle"
+            class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-black/10 dark:bg-white/10 border border-black/10 dark:border-white/20 transition"
+          >
+            <span id="themeIcon">🌙</span>
+          </button>
+
+          <!-- Hamburger -->
+          <button id="menu-btn" class="md:hidden text-2xl">☰</button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden pt-5">
+          <ul
+            class="flex flex-col text-center gap-5 pb-3 bg-white/70 dark:bg-white/5 backdrop-blur-lg border border-gray-300 dark:border-white/10 rounded-2xl p-6 text-gray-800 dark:text-white"
+          >
+            <li>
+              <a
+                href="#home"
+                class="hover:text-blue-800 font-semibold transition"
+              >
+                Home
+              </a>
+            </li>
+            <li>
+              <a
+                href="#about"
+                class="hover:text-blue-800 font-semibold transition"
+              >
+                About
+              </a>
+            </li>
+            <li>
+              <a
+                href="#skills"
+                class="hover:text-blue-800 font-semibold transition"
+              >
+                Skills
+              </a>
+            </li>
+            <li>
+              <a
+                href="#projects"
+                class="hover:text-blue-800 font-semibold transition"
+              >
+                Projects
+              </a>
+            </li>
+
+            <!-- Contact Button -->
+            <a
+              href="mailto:masapif8@gmail.com"
+              class="bg-cyan-500 hover:bg-cyan-600 text-white px-5 py-2 rounded-full w-fit mx-auto transition"
+            >
+              Contact
+            </a>
+
+            <!-- Toggle Theme -->
+            <button
+              id="themeToggleMobile"
+              class="flex items-center gap-2 bg-white/80 dark:bg-white/10 border border-gray-300 dark:border-white/20 px-5 py-2 rounded-full w-fit mx-auto hover:scale-105 transition"
+            >
+              Theme <span id="themeIconMobile">🌙</span>
+            </button>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <section id="home" class="min-h-screen flex items-center px-6 pt-32">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <!-- FOTO DULU (order 1 mobile, order 2 desktop) -->
+        <div class="flex justify-center order-1 md:order-2">
+          <div class="relative">
+            <!-- Glow -->
+            <div
+              class="absolute -inset-6 bg-blue-800/20 blur-2xl rounded-2xl"
+            ></div>
+
+            <!-- Card miring -->
+            <div
+              class="relative bg-gray-900 p-3 rounded-2xl shadow-2xl rotate-6 hover:rotate-0 transition duration-500"
+            >
+              <img
+                src="assets/img/myfoto.png"
+                class="w-64 md:w-80 h-[420px] object-cover rounded-2xl grayscale hover:grayscale-0 transition duration-700 hover:scale-105"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- TEXT KEDUA (order 2 mobile, order 1 desktop) -->
+        <div class="order-2 md:order-1">
+          <h1 class="text-4xl md:text-6xl font-bold leading-tight">
+            Hi, I'm <br />
+            <span class="text-blue-800">Mas Apif Muliansyah</span>
+          </h1>
+
+          <h2 class="text-xl md:text-2xl mt-4 text-cyan-500 font-bold">
+            Freelance Photographer
+          </h2>
+
+          <div data-aos="fade-right">
+            <p
+              id="typing"
+              class="mt-6 text-gray-800 dark:text-gray-300 leading-relaxed max-w-lg"
+              data-text="I am an Information Systems student with a passion for photography, web development, and cyber security, experienced with Adobe Lightroom and Laravel."
+            ></p>
+          </div>
+
+          <!-- Social -->
+          <div class="flex gap-4 mt-8">
+            <a
+              href="https://www.instagram.com/apf.mediaa?igsh=MTB6djdpNTBjMnJrZg%3D%3D"
+              class="w-16 h-16 rounded-full border border-gray-400 dark:border-white/20 bg-white/70 dark:bg-white/10 backdrop-blur-md shadow-sm dark:shadow-none flex items-center justify-center hover:scale-110 hover:shadow-md hover:bg-white/80 dark:hover:bg-white/20 transition duration-300"
+            >
+              <img
+                src="assets/icons/icons8-instagram-50.png"
+                class="w-7 invert dark:invert-0"
+              />
+            </a>
+
+            <a
+              href="https://www.linkedin.com/authwall?trk=bf&trkInfo=AQGlF27yCxxufwAAAZxS8CH42XzwMG9PNHPnE_wrxIorLsCsZpp7Uv-izxZoPnQlMpJR2UaLJuyc10bs-ob5Rx7kyD8pHERH9j9JTnA8JpM53PJfJIiZkAncvSkkVNU4BDc9FLg=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fmas-apif-muliansyah%3Futm_source%3Dshare%26utm_campaign%3Dshare_via%26utm_content%3Dprofile%26utm_medium%3Dandroid_app"
+              class="w-16 h-16 rounded-full border border-gray-400 dark:border-white/20 bg-white/70 dark:bg-white/10 backdrop-blur-md shadow-sm dark:shadow-none flex items-center justify-center hover:scale-110 hover:shadow-md hover:bg-white/80 dark:hover:bg-white/20 transition duration-300"
+            >
+              <img
+                src="assets/icons/icons8-linkedin-50.png"
+                class="w-7 invert dark:invert-0"
+              />
+            </a>
+
+            <a
+              href="https://github.com/Apif25"
+              class="w-16 h-16 rounded-full border border-gray-400 dark:border-white/20 bg-white/70 dark:bg-white/10 backdrop-blur-md shadow-sm dark:shadow-none flex items-center justify-center hover:scale-110 hover:shadow-md hover:bg-white/80 dark:hover:bg-white/20 transition duration-300"
+            >
+              <img
+                src="assets/icons/icons8-github-50.png"
+                class="w-7 invert dark:invert-0"
+              />
+            </a>
+          </div>
+
+          <a
+            href="#projects"
+            class="inline-block mt-8 px-8 py-4 rounded-2xl bg-cyan-400 text-black font-bold shadow-lg shadow-blue-800/20 hover:scale-105 hover:shadow-blue-800/60 transition duration-300"
+          >
+            View My Work
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="about"
+      class="min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 mt-32 md:mt-0"
+    >
+      <!-- TITLE -->
+      <h1 class="text-4xl md:text-5xl font-bold mb-20 text-center">About Me</h1>
+
+      <div class="relative w-full flex items-center justify-center">
+        <!-- TEXT BELAKANG GERAK -->
+        <div class="absolute w-full overflow-hidden whitespace-nowrap">
+          <div
+            class="marquee text-[120px] md:text-[180px] font-bold text-black/10 dark:text-white/5"
+          >
+            Mas Apif Muliansyah — Mas Apif Muliansyah — Mas Apif Muliansyah —
+          </div>
+          <div
+            class="marquee2 text-[120px] md:text-[180px] font-bold text-black/10 dark:text-white/5"
+          >
+            Mas Apif Muliansyah — Mas Apif Muliansyah — Mas Apif Muliansyah —
+          </div>
+        </div>
+
+        <!-- FOTO TENGAH -->
+        <img
+          src="assets/img/myfoto.png"
+          class="relative w-72 md:w-96 h-[480px] object-cover rounded-2xl z-10"
+        />
+      </div>
+
+      <!-- ABOUT CARD -->
+      <div class="mt-24 max-w-3xl mx-auto">
+        <!-- WRAPPER BORDER ANIMASI -->
+        <div class="animated-border rounded-3xl p-[2px]">
+          <!-- CARD ASLI KAMU (tidak diubah) -->
+          <div
+            class="bg-white/80 dark:bg-black/70 backdrop-blur-xl rounded-3xl p-10 border border-black/10 dark:border-white/10 shadow-lg dark:shadow-none"
+          >
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center">
+              Who Am I
+            </h2>
+
+            <p class="text-gray-800 dark:text-gray-300 leading-relaxed">
+              I am an Information Systems student passionate about web
+              development, photography, and cyber security. I enjoy building
+              modern websites, learning new technologies, and turning ideas into
+              real digital products.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-8 mt-10 text-center">
+              <div>
+                <p class="text-cyan-400 font-semibold">Education</p>
+                <p
+                  class="class"
+                  ="text-gray-800 dark:text-gray-300 leading-relaxed mt-2"
+                >
+                  S1 Information Systems
+                </p>
+              </div>
+
+              <div>
+                <p class="text-cyan-400 font-semibold">Main Skills</p>
+                <p
+                  class="class"
+                  ="text-gray-800 dark:text-gray-300 leading-relaxed mt-2"
+                >
+                  HTML, CSS, JavaScript, PHP, Laravel
+                </p>
+              </div>
+
+              <div>
+                <p class="text-cyan-400 font-semibold">Interests</p>
+                <p
+                  class="text-gray-800 dark:text-gray-300 leading-relaxed mt-2"
+                >
+                  Photography, Web Development , Cyber Security
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="py-24 px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
+          My Skills
+        </h2>
+
+        <!-- TAB BUTTON -->
+        <div class="flex justify-center mb-12">
+          <div class="relative bg-neutral-800 p-1 rounded-xl flex gap-1">
+            <!-- SLIDING BLUE BACKGROUND -->
+            <span
+              id="tabIndicator"
+              class="absolute top-1 left-1 w-28 h-10 rounded-lg transition-all duration-300 animated-blue"
+            >
+            </span>
+
+            <button
+              onclick="showTab('skillsTab')"
+              id="btnSkills"
+              class="relative z-10 w-28 h-10 text-white font-medium"
+            >
+              Skills
+            </button>
+
+            <button
+              onclick="showTab('certTab')"
+              id="btnCert"
+              class="relative z-10 w-28 h-10 text-white font-medium"
+            >
+              E-Certificates
+            </button>
+          </div>
+        </div>
+
+        <!-- ================= TAB 1 SKILLS GRID ================= -->
+        <div
+          id="skillsTab"
+          class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6"
+        >
+          <!-- Flip Card Items -->
+          <div class="flip-card aspect-square" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img
+                  src="assets/icons/adobe-lightroom-svgrepo-com.svg"
+                  alt="Adobe Lightroom"
+                  class="w-full h-full object-contain p-4"
+                />
+              </div>
+              <div class="flip-card-back">
+                <span
+                  class="text-white text-sm sm:text-base md:text-lg font-semibold px-2 text-center"
+                  >Adobe Lightroom</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card aspect-square" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img
+                  src="assets/icons/html-5-svgrepo-com.svg"
+                  alt="HTML5"
+                  class="w-full h-full object-contain p-4"
+                />
+              </div>
+              <div class="flip-card-back">
+                <span
+                  class="text-white text-sm sm:text-base md:text-lg font-semibold px-2 text-center"
+                  >HTML</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card aspect-square" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img
+                  src="assets/icons/css-3-svgrepo-com.svg"
+                  alt="CSS3"
+                  class="w-full h-full object-contain p-4"
+                />
+              </div>
+              <div class="flip-card-back">
+                <span
+                  class="text-white text-sm sm:text-base md:text-lg font-semibold px-2 text-center"
+                  >CSS</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card aspect-square" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img
+                  src="assets/icons/javascript-svgrepo-com.svg"
+                  alt="JavaScript"
+                  class="w-full h-full object-contain p-4"
+                />
+              </div>
+              <div class="flip-card-back">
+                <span
+                  class="text-white text-sm sm:text-base md:text-lg font-semibold px-2 text-center"
+                  >Javascript</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card aspect-square" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img
+                  src="assets/icons/mysql-logo-svgrepo-com.svg"
+                  alt="MySQL"
+                  class="w-full h-full object-contain p-4"
+                />
+              </div>
+              <div class="flip-card-back">
+                <span
+                  class="text-white text-sm sm:text-base md:text-lg font-semibold px-2 text-center"
+                  >MySQL</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card aspect-square" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img
+                  src="assets/icons/python-svgrepo-com.svg"
+                  alt="Python"
+                  class="w-full h-full object-contain p-4"
+                />
+              </div>
+              <div class="flip-card-back">
+                <span
+                  class="text-white text-sm sm:text-base md:text-lg font-semibold px-2 text-center"
+                  >Python</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card aspect-square" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img
+                  src="assets/icons/php-svgrepo-com.svg"
+                  alt="PHP"
+                  class="w-full h-full object-contain p-4"
+                />
+              </div>
+              <div class="flip-card-back">
+                <span
+                  class="text-white text-sm sm:text-base md:text-lg font-semibold px-2 text-center"
+                  >PHP</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card aspect-square" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img
+                  src="assets/icons/laravel-svgrepo-com.svg"
+                  alt="Laravel"
+                  class="w-full h-full object-contain p-4"
+                />
+              </div>
+              <div class="flip-card-back">
+                <span
+                  class="text-white text-sm sm:text-base md:text-lg font-semibold px-2 text-center"
+                  >Laravel</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card aspect-square" onclick="flipCard(this)">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img
+                  src="assets/icons/tailwind-svgrepo-com.svg"
+                  alt="Tailwind CSS"
+                  class="w-full h-full object-contain p-4"
+                />
+              </div>
+              <div class="flip-card-back">
+                <span
+                  class="text-white text-sm sm:text-base md:text-lg font-semibold px-2 text-center"
+                  >Tailwind CSS</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 2 CERTIFICATE GRID ================= -->
+        <div
+          id="certTab"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 hidden"
+        >
+          <div
+            class="group relative border border-blue-500 rounded-2xl overflow-hidden aspect-video"
+          >
+            <img
+              src="assets/img/sertifikat foto.jpg"
+              alt="Web Development Certificate"
+              class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+            />
+            <div
+              class="absolute inset-0 bg-blue-600/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition"
+            >
+              <span
+                class="text-white text-base md:text-lg font-semibold px-4 text-center"
+                >Photo Competition</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="group flip-card relative border border-blue-500 rounded-2xl overflow-hidden aspect-video"
+          >
+            <div class="flip-inner">
+              <!-- FRONT IMAGE -->
+              <div class="flip-front">
+                <img
+                  src="assets/img/sertif basdat1.jpg"
+                  alt="Certificate"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+
+              <!-- BACK IMAGE (gambar ketika di flip) -->
+              <div class="flip-back">
+                <img
+                  src="assets/img/sertif basdat2.jpg"
+                  alt="Certificate Full"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="py-24 overflow-hidden">
+      <h2 class="text-4xl font-bold text-center mb-14">My Projects</h2>
+
+      <!-- 3 PROJECT UNGGULAN (STATIC) -->
+      <div class="grid md:grid-cols-3 gap-8 mb-16">
+        <!-- CARD 1 -->
+        <div
+          class="bg-neutral-900 border border-blue-500 rounded-2xl overflow-hidden shadow-lg transition duration-300"
+        >
+          <img
+            src="assets/img/Website Sekolah.png"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2 text-white drop-shadow-md">
+              School Website
+            </h3>
+            <p class="text-gray-400 text-sm">
+              A static school-themed website developed as a college project.
+              Built using HTML, JavaScript, and Tailwind CSS with a focus on
+              responsive design and clean UI.
+            </p>
+          </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div
+          class="bg-neutral-900 border border-blue-500 rounded-2xl overflow-hidden shadow-lg transition duration-300"
+        >
+          <img
+            src="assets/img/Bigbike Shop.png"
+            class="w-full h-48 object-cover"
+          />
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2 text-white drop-shadow-md">
+              BigBike Shop Admin Dashboard
+            </h3>
+            <p class="text-gray-400 text-sm">
+              Laravel-based admin CRUD system using SB Admin and Vite for
+              managing motorcycle stock, transactions, reports, and
+              authentication with Laravel Breeze.
+            </p>
+          </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div
+          class="relative bg-neutral-900 border border-blue-500 rounded-2xl overflow-hidden shadow-lg transition duration-300"
+        >
+          <!-- LINK OVERLAY (tak terlihat tapi bisa diklik) -->
+          <a
+            href="https://drive.google.com/drive/folders/14ETh6O-jNTI2xxIRhHyzpBrzl2qpCGsI"
+            target="_blank"
+            class="absolute inset-0 z-10"
+          ></a>
+
+          <img src="assets/img/_MG_2901.JPG" class="w-full h-48 object-cover" />
+
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2 text-white drop-shadow-md">
+              Danone Aqua
+            </h3>
+
+            <p class="text-gray-400 text-sm">
+              I was responsible for capturing important moments during meetings
+              and company activities. My role included documenting events,
+              taking photos during briefings, and ensuring every key moment was
+              recorded professionally.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="relative bg-neutral-900 border border-blue-500 rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition duration-300"
+        >
+          <!-- LINK OVERLAY (tak terlihat tapi bisa diklik) -->
+          <a
+            href="https://drive.google.com/drive/folders/1ye409ezc67fQwhQShvg2fOEH8VxcBZvH"
+            target="_blank"
+            class="absolute inset-0 z-10"
+          ></a>
+
+          <img src="assets/img/DSC07468.jpg" class="w-full h-48 object-cover" />
+
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2 text-white drop-shadow-md">
+              PT Vanco Mas Sejahtera
+            </h3>
+
+            <p class="text-gray-400 text-sm">
+              My responsibility was documenting the company outing and fun games
+              activities. I captured important moments and created visual
+              documentation of the event to highlight the team’s experience and
+              engagement
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- WRAPPER biar ke cut pinggir -->
+      <div class="relative overflow-hidden">
+        <!-- TRACK -->
+        <div class="flex gap-8 w-max animate-projects">
+          <!-- CARD 1 -->
+          <div class="projectItem">
+            <div
+              class="group relative border border-blue-500 rounded-2xl overflow-hidden transition duration-500 hover:-translate-y-2 hover:shadow-2xl"
+            >
+              <img
+                src="assets/img/REK00751.jpg"
+                class="w-full h-56 object-cover transition duration-500 group-hover:scale-110"
+              />
+            </div>
+          </div>
+
+          <!-- CARD 2 -->
+          <div class="projectItem">
+            <div
+              class="group relative border border-blue-500 rounded-2xl overflow-hidden transition duration-500 hover:-translate-y-2 hover:shadow-2xl"
+            >
+              <img
+                src="assets/img/_MG_1223.JPG"
+                class="w-full h-56 object-cover transition duration-500 group-hover:scale-110"
+              />
+            </div>
+          </div>
+
+          <!-- CARD 3 -->
+          <div class="projectItem">
+            <div
+              class="group relative border border-blue-500 rounded-2xl overflow-hidden transition duration-500 hover:-translate-y-2 hover:shadow-2xl"
+            >
+              <img
+                src="assets/img/_MG_2775.JPG"
+                class="w-full h-56 object-cover transition duration-500 group-hover:scale-110"
+              />
+            </div>
+          </div>
+
+          <!-- DUPLIKAT UNTUK LOOP -->
+          <div class="projectItem">
+            <div
+              class="group relative border border-blue-500 rounded-2xl overflow-hidden transition duration-500 hover:-translate-y-2 hover:shadow-2xl"
+            >
+              <img
+                src="assets/img/_MG_1225.JPG"
+                class="w-full h-56 object-cover transition duration-500 group-hover:scale-110"
+              />
+            </div>
+          </div>
+
+          <div class="projectItem">
+            <div
+              class="group relative border border-blue-500 rounded-2xl overflow-hidden transition duration-500 hover:-translate-y-2 hover:shadow-2xl"
+            >
+              <img
+                src="assets/img/_MG_1317.JPG"
+                class="w-full h-56 object-cover transition duration-500 group-hover:scale-110"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BARIS KEDUA (GERAK KE KANAN) -->
+      <div class="relative overflow-hidden mt-10">
+        <div class="flex gap-8 w-max animate-projects-reverse">
+          <div class="projectItem">
+            <div
+              class="group relative border border-blue-500 rounded-2xl overflow-hidden transition duration-500 hover:-translate-y-2 hover:shadow-2xl"
+            >
+              <img
+                src="assets/img/DSC08023.jpg"
+                class="w-full h-56 object-cover transition duration-500 group-hover:scale-110"
+              />
+            </div>
+          </div>
+
+          <div class="projectItem">
+            <div
+              class="group relative border border-blue-500 rounded-2xl overflow-hidden transition duration-500 hover:-translate-y-2 hover:shadow-2xl"
+            >
+              <img
+                src="assets/img/DSC08027.jpg"
+                class="w-full h-56 object-cover transition duration-500 group-hover:scale-110"
+              />
+            </div>
+          </div>
+
+          <div class="projectItem">
+            <div
+              class="group relative border border-blue-500 rounded-2xl overflow-hidden transition duration-500 hover:-translate-y-2 hover:shadow-2xl"
+            >
+              <img
+                src="assets/img/DSC07899.jpg"
+                class="w-full h-56 object-cover transition duration-500 group-hover:scale-110"
+              />
+            </div>
+          </div>
+
+          <!-- DUPLIKAT UNTUK LOOP -->
+          <div class="projectItem">
+            <div
+              class="group relative border border-blue-500 rounded-2xl overflow-hidden transition duration-500 hover:-translate-y-2 hover:shadow-2xl"
+            >
+              <img
+                src="assets/img/DSC08174.jpg"
+                class="w-full h-56 object-cover transition duration-500 group-hover:scale-110"
+              />
+            </div>
+          </div>
+
+          <div class="projectItem">
+            <div
+              class="group relative border border-blue-500 rounded-2xl overflow-hidden transition duration-500 hover:-translate-y-2 hover:shadow-2xl"
+            >
+              <img
+                src="assets/img/DSC07665.jpg"
+                class="w-full h-56 object-cover transition duration-500 group-hover:scale-110"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="script.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    <audio id="bgMusic" autoplay loop muted playsinline preload="auto">
+      <source src="assets/music/multo.mp3" type="audio/mpeg" />
+    </audio>
+
+    <!-- VINYL MUSIC BUTTON -->
+    <div
+      id="musicPlayer"
+      class="fixed bottom-6 right-6 w-16 h-16 rounded-full cursor-pointer z-50"
+    >
+      <div
+        id="disc"
+        class="w-full h-full rounded-full shadow-lg flex items-center justify-center"
+      >
+        <!-- titik tengah vinyl -->
+        <span id="musicIcon" class="text-white absolute text-sm font-bold">
+          🎵
+        </span>
+      </div>
+    </div>
+
+    <footer class="relative w-full py-8 text-white text-center overflow-hidden">
+      <div class="relative z-10 flex items-center justify-center space-x-2">
+        <!-- Logo copyright -->
+        <span class="text-sm">©</span>
+        <!-- Nama -->
+        <span class="font-semibold">Mas Apif Muliansyah</span>
+      </div>
+
+      <!-- Background animasi -->
+      <div class="absolute inset-0 bg-blue-800 animate-gradient"></div>
+    </footer>
+  </body>
+</html>
