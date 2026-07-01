@@ -141,37 +141,6 @@ themeToggleMobile?.addEventListener("click", () => {
   setTheme(!document.documentElement.classList.contains("dark"));
 });
 
-// ============= BACKGROUND MUSIC PLAYER =============
-document.addEventListener("DOMContentLoaded", () => {
-  const music = document.getElementById("bgMusic");
-  const disc = document.getElementById("disc");
-  const player = document.getElementById("musicPlayer");
-  const icon = document.getElementById("musicIcon");
-  if (!music || !player) return;
-
-  music.volume = 0.25;
-
-  function togglePlay() {
-    if (music.paused) {
-      music.muted = false;
-      music.play().catch(() => {});
-      disc.classList.add("spinning");
-      icon.textContent = "⏸";
-    } else {
-      music.pause();
-      disc.classList.remove("spinning");
-      icon.textContent = "🎵";
-    }
-  }
-
-  player.addEventListener("click", togglePlay);
-  player.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      togglePlay();
-    }
-  });
-});
 
 // ============= PAUSE GALERI PROJECT SAAT TIDAK TERLIHAT =============
 // Animasi berjalan terus walau section-nya sudah discroll lewat, ini boros
