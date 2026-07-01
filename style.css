@@ -131,36 +131,49 @@ body {
   min-width: 260px;
   max-width: 320px;
   flex: 1 0 auto;
+  contain: content;
 }
 
-/* BARIS ATAS */
+.projectItem img {
+  contain: paint;
+}
+
+/* wrapper: batasi area repaint biar browser tidak repaint seluruh halaman */
+.animate-projects,
+.animate-projects-reverse {
+  contain: layout paint;
+}
+
+/* BARIS ATAS - pakai translate3d + translateZ(0) supaya animasi jalan di GPU, bukan CPU */
 @keyframes scrollProjects {
   from {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
 .animate-projects {
   animation: scrollProjects 25s linear infinite;
   will-change: transform;
+  backface-visibility: hidden;
 }
 
 /* BARIS BAWAH (KEBALIKAN) */
 @keyframes scrollProjectsReverse {
   from {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
   to {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 .animate-projects-reverse {
   animation: scrollProjectsReverse 25s linear infinite;
   will-change: transform;
+  backface-visibility: hidden;
 }
 
 /* pause saat hover biar UX cakep */
