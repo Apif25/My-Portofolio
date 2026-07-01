@@ -141,29 +141,6 @@ themeToggleMobile?.addEventListener("click", () => {
   setTheme(!document.documentElement.classList.contains("dark"));
 });
 
-
-// ============= PAUSE GALERI PROJECT SAAT TIDAK TERLIHAT =============
-// Animasi berjalan terus walau section-nya sudah discroll lewat, ini boros
-// CPU/GPU dan bikin scroll di bagian lain jadi ikut lag. Di-pause pakai
-// IntersectionObserver supaya cuma jalan kalau section-nya kelihatan.
-const scrollingRows = document.querySelectorAll(
-  ".animate-projects, .animate-projects-reverse",
-);
-
-if (scrollingRows.length && "IntersectionObserver" in window) {
-  const rowObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        entry.target.style.animationPlayState = entry.isIntersecting
-          ? "running"
-          : "paused";
-      });
-    },
-    { threshold: 0 },
-  );
-  scrollingRows.forEach((row) => rowObserver.observe(row));
-}
-
 // ============= FOOTER YEAR =============
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
