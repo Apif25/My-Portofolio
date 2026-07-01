@@ -92,40 +92,6 @@ body {
   animation: blueGlow 2s ease infinite;
 }
 
-/* tampilan piringan */
-#disc {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #444, #111 70%);
-  border: 3px solid #2563eb;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 26px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
-  transition: 0.3s;
-}
-
-#disc:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 25px rgba(37, 99, 235, 0.5);
-}
-
-@keyframes spinDisc {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.spinning {
-  animation: spinDisc 4s linear infinite;
-}
-
 /* lebar tiap card biar rapi horizontal */
 .projectItem {
   min-width: 260px;
