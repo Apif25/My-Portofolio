@@ -1,51 +1,65 @@
+// ============= INIT AOS =============
+if (window.AOS) {
+  AOS.init({ once: true, duration: 700 });
+}
+
+// ============= MOBILE MENU =============
 const menuBtn = document.getElementById("menu-btn");
 const mobileMenu = document.getElementById("mobile-menu");
 
 menuBtn.addEventListener("click", () => {
-  mobileMenu.classList.toggle("hidden");
+  const isHidden = mobileMenu.classList.toggle("hidden");
+  menuBtn.setAttribute("aria-expanded", String(!isHidden));
 });
 
 // AUTO CLOSE MOBILE MENU SAAT LINK DIKLIK
-const mobileLinks = document.querySelectorAll("#mobile-menu a");
-
-mobileLinks.forEach((link) => {
+document.querySelectorAll("#mobile-menu a").forEach((link) => {
   link.addEventListener("click", () => {
     mobileMenu.classList.add("hidden");
+    menuBtn.setAttribute("aria-expanded", "false");
   });
 });
 
-let lastScroll = 0;
+// ============= NAVBAR HIDE ON SCROLL (throttled via rAF) =============
 const navbar = document.getElementById("navbar");
+let lastScroll = 0;
+let ticking = false;
 
-window.addEventListener("scroll", () => {
+function handleNavbarScroll() {
   const currentScroll = window.pageYOffset;
 
-  // kalau di paling atas, navbar selalu muncul
   if (currentScroll <= 0) {
     navbar.classList.remove("-translate-y-[150%]");
-    return;
-  }
-
-  // scroll ke bawah → sembunyikan
-  if (currentScroll > lastScroll) {
+  } else if (currentScroll > lastScroll) {
     navbar.classList.add("-translate-y-[150%]");
-  }
-  // scroll ke atas → tampilkan
-  else {
+  } else {
     navbar.classList.remove("-translate-y-[150%]");
   }
 
   lastScroll = currentScroll;
-});
+  ticking = false;
+}
 
+window.addEventListener(
+  "scroll",
+  () => {
+    if (!ticking) {
+      requestAnimationFrame(handleNavbarScroll);
+      ticking = true;
+    }
+  },
+  { passive: true },
+);
+
+// ============= TYPEWRITER EFFECT =============
 function typeWriter(element, speed = 25) {
   const text = element.getAttribute("data-text");
   let i = 0;
-  element.innerHTML = "";
+  element.textContent = "";
 
   function typing() {
     if (i < text.length) {
-      element.innerHTML += text.charAt(i);
+      element.textContent += text.charAt(i);
       i++;
       setTimeout(typing, speed);
     }
@@ -54,145 +68,111 @@ function typeWriter(element, speed = 25) {
   typing();
 }
 
-// jalan saat web selesai load
-window.addEventListener("load", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById("typing");
-  typeWriter(el, 25);
+  if (el) typeWriter(el, 25);
 });
 
+// ============= SKILLS / CERTIFICATE TAB =============
 function showTab(tab) {
   const skillsTab = document.getElementById("skillsTab");
   const certTab = document.getElementById("certTab");
   const indicator = document.getElementById("tabIndicator");
+  const btnSkills = document.getElementById("btnSkills");
+  const btnCert = document.getElementById("btnCert");
 
   if (tab === "skillsTab") {
     skillsTab.classList.remove("hidden");
     certTab.classList.add("hidden");
-
-    // geser ke kiri
     indicator.style.transform = "translateX(0px)";
+    btnSkills.setAttribute("aria-pressed", "true");
+    btnCert.setAttribute("aria-pressed", "false");
   } else {
     certTab.classList.remove("hidden");
     skillsTab.classList.add("hidden");
-
-    // geser ke kanan
     indicator.style.transform = "translateX(116px)";
+    btnSkills.setAttribute("aria-pressed", "false");
+    btnCert.setAttribute("aria-pressed", "true");
   }
 }
+window.showTab = showTab;
 
-document.addEventListener("DOMContentLoaded", () => {
-  const music = document.getElementById("bgMusic");
-  const disc = document.getElementById("disc");
-  const player = document.getElementById("musicPlayer");
-  const icon = document.getElementById("musicIcon");
-
-  music.volume = 0.25;
-
-  // ========= AUTOPLAY SAAT PAGE LOAD =========
-  window.addEventListener("load", async () => {
-    try {
-      await music.play(); // autoplay muted
-      disc.classList.add("spinning");
-      icon.innerHTML = "⏸"; // karena musik lagi jalan
-    } catch (err) {
-      console.log("Autoplay blocked");
-    }
-  });
-
-  // ========= AKTIFKAN SUARA SETELAH INTERAKSI =========
-  function enableSound() {
-    music.muted = false;
-    music.play();
-    document.removeEventListener("click", enableSound);
-    document.removeEventListener("scroll", enableSound);
-  }
-  document.addEventListener("click", enableSound);
-  document.addEventListener("scroll", enableSound);
-
-  // ========= TOGGLE PLAY / PAUSE =========
-  player.addEventListener("click", () => {
-    if (music.paused) {
-      music.play();
-      disc.classList.add("spinning");
-      icon.innerHTML = "⏸";
-    } else {
-      music.pause();
-      disc.classList.remove("spinning");
-      icon.innerHTML = "🎵";
-    }
-  });
-});
-
-window.addEventListener("load", () => {
-  const splash = document.getElementById("splash");
-  const splashText = document.getElementById("splashText");
-
-  // tampilkan tulisan dengan fade in
-  splashText.classList.add("fade-in");
-
-  // setelah 2.5 detik → fade out splash
-  setTimeout(() => {
-    splash.style.transition = "opacity 0.8s ease";
-    splash.style.opacity = "0";
-
-    splash.addEventListener("transitionend", () => {
-      splash.style.display = "none";
-    });
-  }, 2500); // durasi splash
-});
-
-function flipCard(card) {
-  card.classList.toggle("flipped");
-}
-
-// Optional: Auto flip back after some time
+// ============= FLIP CARD (Skills grid) =============
 function flipCard(card) {
   card.classList.toggle("flipped");
 
-  // Auto flip back after 3 seconds (optional)
   if (card.classList.contains("flipped")) {
     setTimeout(() => {
       card.classList.remove("flipped");
     }, 3000);
   }
 }
+window.flipCard = flipCard;
 
+// ============= FLIP CARD (Certificate tab) =============
 document.querySelectorAll(".flip-card").forEach((card) => {
   card.addEventListener("click", () => {
     card.classList.toggle("active");
   });
 });
 
+// ============= THEME TOGGLE (DARK MODE) =============
 const themeToggle = document.getElementById("themeToggle");
 const themeToggleMobile = document.getElementById("themeToggleMobile");
-
 const themeIcon = document.getElementById("themeIcon");
 const themeIconMobile = document.getElementById("themeIconMobile");
 
 function setTheme(isDark) {
-  if (isDark) {
-    document.documentElement.classList.add("dark");
-    localStorage.setItem("theme", "dark");
-    themeIcon.textContent = "☀️";
-    if (themeIconMobile) themeIconMobile.textContent = "☀️";
-  } else {
-    document.documentElement.classList.remove("dark");
-    localStorage.setItem("theme", "light");
-    themeIcon.textContent = "🌙";
-    if (themeIconMobile) themeIconMobile.textContent = "🌙";
-  }
+  document.documentElement.classList.toggle("dark", isDark);
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+  const icon = isDark ? "☀️" : "🌙";
+  if (themeIcon) themeIcon.textContent = icon;
+  if (themeIconMobile) themeIconMobile.textContent = icon;
 }
 
-// load saved theme
 const savedTheme = localStorage.getItem("theme");
-setTheme(savedTheme === "dark");
+const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+setTheme(savedTheme ? savedTheme === "dark" : prefersDark);
 
-// desktop toggle
-themeToggle.addEventListener("click", () => {
+themeToggle?.addEventListener("click", () => {
+  setTheme(!document.documentElement.classList.contains("dark"));
+});
+themeToggleMobile?.addEventListener("click", () => {
   setTheme(!document.documentElement.classList.contains("dark"));
 });
 
-// mobile toggle
-themeToggleMobile.addEventListener("click", () => {
-  setTheme(!document.documentElement.classList.contains("dark"));
+// ============= BACKGROUND MUSIC PLAYER =============
+document.addEventListener("DOMContentLoaded", () => {
+  const music = document.getElementById("bgMusic");
+  const disc = document.getElementById("disc");
+  const player = document.getElementById("musicPlayer");
+  const icon = document.getElementById("musicIcon");
+  if (!music || !player) return;
+
+  music.volume = 0.25;
+
+  function togglePlay() {
+    if (music.paused) {
+      music.muted = false;
+      music.play().catch(() => {});
+      disc.classList.add("spinning");
+      icon.textContent = "⏸";
+    } else {
+      music.pause();
+      disc.classList.remove("spinning");
+      icon.textContent = "🎵";
+    }
+  }
+
+  player.addEventListener("click", togglePlay);
+  player.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      togglePlay();
+    }
+  });
 });
+
+// ============= FOOTER YEAR =============
+const yearEl = document.getElementById("year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();

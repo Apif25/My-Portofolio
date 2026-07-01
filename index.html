@@ -1,56 +1,89 @@
 <!doctype html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portofolio Saya</title>
 
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: "class",
-      };
-    </script>
+    <!-- SEO -->
+    <title>Mas Apif Muliansyah | Freelance Photographer & Web Developer</title>
+    <meta
+      name="description"
+      content="Portofolio Mas Apif Muliansyah — Mahasiswa Sistem Informasi, freelance photographer, dan web developer. Lihat proyek web (HTML, CSS, JavaScript, Laravel) dan hasil dokumentasi fotografi profesional."
+    />
+    <meta
+      name="keywords"
+      content="Mas Apif Muliansyah, portofolio, freelance photographer, web developer, Laravel developer, fotografer Jakarta"
+    />
+    <meta name="author" content="Mas Apif Muliansyah" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://masapifmuliansyah.com/" />
 
-    <!-- CSS sendiri -->
-    <link rel="stylesheet" href="style.css" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Mas Apif Muliansyah | Freelance Photographer & Web Developer"
+    />
+    <meta
+      property="og:description"
+      content="Portofolio web development dan fotografi Mas Apif Muliansyah."
+    />
+    <meta property="og:image" content="assets/img/myfoto.png" />
+    <meta property="og:url" content="https://masapifmuliansyah.com/" />
+    <meta property="og:locale" content="id_ID" />
 
-    <!--LINK CDN AOS-->
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-    <!--LINK CDN AOS END-->
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Mas Apif Muliansyah | Freelance Photographer & Web Developer"
+    />
+    <meta
+      name="twitter:description"
+      content="Portofolio web development dan fotografi Mas Apif Muliansyah."
+    />
+    <meta name="twitter:image" content="assets/img/myfoto.png" />
+
+    <link rel="icon" type="image/png" href="assets/img/myfoto.png" />
+
+    <!-- Preconnect biar font & CDN lebih cepat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- Font -->
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Tailwind hasil build statis (menggantikan CDN, jauh lebih cepat) -->
+    <link rel="stylesheet" href="tailwind.css" />
+
+    <!-- CSS sendiri -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <!-- JSON-LD Structured Data (SEO) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Mas Apif Muliansyah",
+        "jobTitle": "Freelance Photographer & Web Developer",
+        "url": "https://masapifmuliansyah.com/",
+        "sameAs": [
+          "https://www.instagram.com/apf.mediaa",
+          "https://www.linkedin.com/in/mas-apif-muliansyah",
+          "https://github.com/Apif25"
+        ]
+      }
+    </script>
   </head>
   <body
     class="bg-white text-gray-900 dark:bg-neutral-900 dark:text-white transition-colors duration-500"
   >
-    <!-- SPLASH SCREEN -->
-    <div
-      id="splash"
-      class="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden"
-    >
-      <!-- Background animasi -->
-      <div class="absolute inset-0 splash-bg"></div>
-
-      <!-- Lingkaran pulsate -->
-      <div
-        class="w-24 h-24 rounded-full bg-white/10 animate-pulse shadow-lg mb-8 z-10"
-      ></div>
-
-      <!-- Tulisan -->
-      <h1
-        class="text-white text-2xl md:text-4xl font-bold opacity-0 z-10"
-        id="splashText"
-      >
-        Welcome to my Portfolio Website
-      </h1>
-    </div>
-
     <div class="fixed top-5 w-full flex justify-center z-50">
       <nav
         id="navbar"
@@ -58,10 +91,10 @@
       >
         <div class="flex justify-between items-center">
           <!-- Logo -->
-          <a href="#" class="leading-none">
-            <h1 class="text-l font-bold text-blue-800 leading-none">
+          <a href="#home" class="leading-none">
+            <p class="text-l font-bold text-blue-800 leading-none">
               Mas Apif Muliansyah
-            </h1>
+            </p>
             <p class="text-sm font-semibold text-white">Portofolio</p>
           </a>
 
@@ -102,13 +135,22 @@
           <!-- DARK MODE TOGGLE DESKTOP -->
           <button
             id="themeToggle"
+            aria-label="Toggle dark mode"
             class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-black/10 dark:bg-white/10 border border-black/10 dark:border-white/20 transition"
           >
-            <span id="themeIcon">🌙</span>
+            <span id="themeIcon" aria-hidden="true">🌙</span>
           </button>
 
           <!-- Hamburger -->
-          <button id="menu-btn" class="md:hidden text-2xl">☰</button>
+          <button
+            id="menu-btn"
+            class="md:hidden text-2xl"
+            aria-label="Buka menu navigasi"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            ☰
+          </button>
         </div>
 
         <!-- Mobile Menu -->
@@ -160,9 +202,10 @@
             <!-- Toggle Theme -->
             <button
               id="themeToggleMobile"
+              aria-label="Toggle dark mode"
               class="flex items-center gap-2 bg-white/80 dark:bg-white/10 border border-gray-300 dark:border-white/20 px-5 py-2 rounded-full w-fit mx-auto hover:scale-105 transition"
             >
-              Theme <span id="themeIconMobile">🌙</span>
+              Theme <span id="themeIconMobile" aria-hidden="true">🌙</span>
             </button>
           </ul>
         </div>
@@ -185,6 +228,11 @@
             >
               <img
                 src="assets/img/myfoto.png"
+                alt="Foto Mas Apif Muliansyah"
+                width="320"
+                height="420"
+                fetchpriority="high"
+                decoding="async"
                 class="w-64 md:w-80 h-[420px] object-cover rounded-2xl grayscale hover:grayscale-0 transition duration-700 hover:scale-105"
               />
             </div>
@@ -205,7 +253,7 @@
           <div data-aos="fade-right">
             <p
               id="typing"
-              class="mt-6 text-gray-800 dark:text-gray-300 leading-relaxed max-w-lg"
+              class="mt-6 text-gray-800 dark:text-gray-300 leading-relaxed max-w-lg min-h-[100px] md:min-h-[80px]"
               data-text="I am an Information Systems student with a passion for photography, web development, and cyber security, experienced with Adobe Lightroom and Laravel."
             ></p>
           </div>
@@ -213,31 +261,55 @@
           <!-- Social -->
           <div class="flex gap-4 mt-8">
             <a
-              href="https://www.instagram.com/apf.mediaa?igsh=MTB6djdpNTBjMnJrZg%3D%3D"
+              href="https://www.instagram.com/apf.mediaa"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram Mas Apif Muliansyah"
               class="w-16 h-16 rounded-full border border-gray-400 dark:border-white/20 bg-white/70 dark:bg-white/10 backdrop-blur-md shadow-sm dark:shadow-none flex items-center justify-center hover:scale-110 hover:shadow-md hover:bg-white/80 dark:hover:bg-white/20 transition duration-300"
             >
               <img
                 src="assets/icons/icons8-instagram-50.png"
+                alt="Instagram"
+                width="28"
+                height="28"
+                loading="lazy"
+                decoding="async"
                 class="w-7 invert dark:invert-0"
               />
             </a>
 
             <a
-              href="https://www.linkedin.com/authwall?trk=bf&trkInfo=AQGlF27yCxxufwAAAZxS8CH42XzwMG9PNHPnE_wrxIorLsCsZpp7Uv-izxZoPnQlMpJR2UaLJuyc10bs-ob5Rx7kyD8pHERH9j9JTnA8JpM53PJfJIiZkAncvSkkVNU4BDc9FLg=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fmas-apif-muliansyah%3Futm_source%3Dshare%26utm_campaign%3Dshare_via%26utm_content%3Dprofile%26utm_medium%3Dandroid_app"
+              href="https://www.linkedin.com/in/mas-apif-muliansyah"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn Mas Apif Muliansyah"
               class="w-16 h-16 rounded-full border border-gray-400 dark:border-white/20 bg-white/70 dark:bg-white/10 backdrop-blur-md shadow-sm dark:shadow-none flex items-center justify-center hover:scale-110 hover:shadow-md hover:bg-white/80 dark:hover:bg-white/20 transition duration-300"
             >
               <img
                 src="assets/icons/icons8-linkedin-50.png"
+                alt="LinkedIn"
+                width="28"
+                height="28"
+                loading="lazy"
+                decoding="async"
                 class="w-7 invert dark:invert-0"
               />
             </a>
 
             <a
               href="https://github.com/Apif25"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Mas Apif Muliansyah"
               class="w-16 h-16 rounded-full border border-gray-400 dark:border-white/20 bg-white/70 dark:bg-white/10 backdrop-blur-md shadow-sm dark:shadow-none flex items-center justify-center hover:scale-110 hover:shadow-md hover:bg-white/80 dark:hover:bg-white/20 transition duration-300"
             >
               <img
                 src="assets/icons/icons8-github-50.png"
+                alt="GitHub"
+                width="28"
+                height="28"
+                loading="lazy"
+                decoding="async"
                 class="w-7 invert dark:invert-0"
               />
             </a>
@@ -258,11 +330,14 @@
       class="min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 mt-32 md:mt-0"
     >
       <!-- TITLE -->
-      <h1 class="text-4xl md:text-5xl font-bold mb-20 text-center">About Me</h1>
+      <h2 class="text-4xl md:text-5xl font-bold mb-20 text-center">About Me</h2>
 
       <div class="relative w-full flex items-center justify-center">
         <!-- TEXT BELAKANG GERAK -->
-        <div class="absolute w-full overflow-hidden whitespace-nowrap">
+        <div
+          class="absolute w-full overflow-hidden whitespace-nowrap"
+          aria-hidden="true"
+        >
           <div
             class="marquee text-[120px] md:text-[180px] font-bold text-black/10 dark:text-white/5"
           >
@@ -278,6 +353,11 @@
         <!-- FOTO TENGAH -->
         <img
           src="assets/img/myfoto.png"
+          alt="Mas Apif Muliansyah"
+          width="384"
+          height="480"
+          loading="lazy"
+          decoding="async"
           class="relative w-72 md:w-96 h-[480px] object-cover rounded-2xl z-10"
         />
       </div>
@@ -286,13 +366,13 @@
       <div class="mt-24 max-w-3xl mx-auto">
         <!-- WRAPPER BORDER ANIMASI -->
         <div class="animated-border rounded-3xl p-[2px]">
-          <!-- CARD ASLI KAMU (tidak diubah) -->
+          <!-- CARD -->
           <div
             class="bg-white/80 dark:bg-black/70 backdrop-blur-xl rounded-3xl p-10 border border-black/10 dark:border-white/10 shadow-lg dark:shadow-none"
           >
-            <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center">
+            <h3 class="text-2xl md:text-3xl font-bold mb-6 text-center">
               Who Am I
-            </h2>
+            </h3>
 
             <p class="text-gray-800 dark:text-gray-300 leading-relaxed">
               I am an Information Systems student passionate about web
@@ -305,8 +385,7 @@
               <div>
                 <p class="text-cyan-400 font-semibold">Education</p>
                 <p
-                  class="class"
-                  ="text-gray-800 dark:text-gray-300 leading-relaxed mt-2"
+                  class="text-gray-800 dark:text-gray-300 leading-relaxed mt-2"
                 >
                   S1 Information Systems
                 </p>
@@ -315,8 +394,7 @@
               <div>
                 <p class="text-cyan-400 font-semibold">Main Skills</p>
                 <p
-                  class="class"
-                  ="text-gray-800 dark:text-gray-300 leading-relaxed mt-2"
+                  class="text-gray-800 dark:text-gray-300 leading-relaxed mt-2"
                 >
                   HTML, CSS, JavaScript, PHP, Laravel
                 </p>
@@ -327,7 +405,7 @@
                 <p
                   class="text-gray-800 dark:text-gray-300 leading-relaxed mt-2"
                 >
-                  Photography, Web Development , Cyber Security
+                  Photography, Web Development, Cyber Security
                 </p>
               </div>
             </div>
@@ -353,16 +431,20 @@
             </span>
 
             <button
+              type="button"
               onclick="showTab('skillsTab')"
               id="btnSkills"
+              aria-pressed="true"
               class="relative z-10 w-28 h-10 text-white font-medium"
             >
               Skills
             </button>
 
             <button
+              type="button"
               onclick="showTab('certTab')"
               id="btnCert"
+              aria-pressed="false"
               class="relative z-10 w-28 h-10 text-white font-medium"
             >
               E-Certificates
@@ -382,6 +464,10 @@
                 <img
                   src="assets/icons/adobe-lightroom-svgrepo-com.svg"
                   alt="Adobe Lightroom"
+                  width="64"
+                  height="64"
+                  loading="lazy"
+                  decoding="async"
                   class="w-full h-full object-contain p-4"
                 />
               </div>
@@ -400,6 +486,10 @@
                 <img
                   src="assets/icons/html-5-svgrepo-com.svg"
                   alt="HTML5"
+                  width="64"
+                  height="64"
+                  loading="lazy"
+                  decoding="async"
                   class="w-full h-full object-contain p-4"
                 />
               </div>
@@ -418,6 +508,10 @@
                 <img
                   src="assets/icons/css-3-svgrepo-com.svg"
                   alt="CSS3"
+                  width="64"
+                  height="64"
+                  loading="lazy"
+                  decoding="async"
                   class="w-full h-full object-contain p-4"
                 />
               </div>
@@ -436,6 +530,10 @@
                 <img
                   src="assets/icons/javascript-svgrepo-com.svg"
                   alt="JavaScript"
+                  width="64"
+                  height="64"
+                  loading="lazy"
+                  decoding="async"
                   class="w-full h-full object-contain p-4"
                 />
               </div>
@@ -454,6 +552,10 @@
                 <img
                   src="assets/icons/mysql-logo-svgrepo-com.svg"
                   alt="MySQL"
+                  width="64"
+                  height="64"
+                  loading="lazy"
+                  decoding="async"
                   class="w-full h-full object-contain p-4"
                 />
               </div>
@@ -472,6 +574,10 @@
                 <img
                   src="assets/icons/python-svgrepo-com.svg"
                   alt="Python"
+                  width="64"
+                  height="64"
+                  loading="lazy"
+                  decoding="async"
                   class="w-full h-full object-contain p-4"
                 />
               </div>
@@ -490,6 +596,10 @@
                 <img
                   src="assets/icons/php-svgrepo-com.svg"
                   alt="PHP"
+                  width="64"
+                  height="64"
+                  loading="lazy"
+                  decoding="async"
                   class="w-full h-full object-contain p-4"
                 />
               </div>
@@ -508,6 +618,10 @@
                 <img
                   src="assets/icons/laravel-svgrepo-com.svg"
                   alt="Laravel"
+                  width="64"
+                  height="64"
+                  loading="lazy"
+                  decoding="async"
                   class="w-full h-full object-contain p-4"
                 />
               </div>
@@ -526,6 +640,10 @@
                 <img
                   src="assets/icons/tailwind-svgrepo-com.svg"
                   alt="Tailwind CSS"
+                  width="64"
+                  height="64"
+                  loading="lazy"
+                  decoding="async"
                   class="w-full h-full object-contain p-4"
                 />
               </div>
@@ -549,7 +667,11 @@
           >
             <img
               src="assets/img/sertifikat foto.jpg"
-              alt="Web Development Certificate"
+              alt="Sertifikat Photo Competition"
+              width="400"
+              height="225"
+              loading="lazy"
+              decoding="async"
               class="w-full h-full object-cover group-hover:scale-110 transition duration-500"
             />
             <div
@@ -570,7 +692,11 @@
               <div class="flip-front">
                 <img
                   src="assets/img/sertif basdat1.jpg"
-                  alt="Certificate"
+                  alt="Sertifikat Basis Data - halaman 1"
+                  width="400"
+                  height="225"
+                  loading="lazy"
+                  decoding="async"
                   class="w-full h-full object-cover"
                 />
               </div>
@@ -579,7 +705,11 @@
               <div class="flip-back">
                 <img
                   src="assets/img/sertif basdat2.jpg"
-                  alt="Certificate Full"
+                  alt="Sertifikat Basis Data - halaman 2"
+                  width="400"
+                  height="225"
+                  loading="lazy"
+                  decoding="async"
                   class="w-full h-full object-cover"
                 />
               </div>
@@ -593,13 +723,18 @@
       <h2 class="text-4xl font-bold text-center mb-14">My Projects</h2>
 
       <!-- 3 PROJECT UNGGULAN (STATIC) -->
-      <div class="grid md:grid-cols-3 gap-8 mb-16">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 mb-16 px-6">
         <!-- CARD 1 -->
         <div
           class="bg-neutral-900 border border-blue-500 rounded-2xl overflow-hidden shadow-lg transition duration-300"
         >
           <img
             src="assets/img/Website Sekolah.png"
+            alt="Tangkapan layar Website Sekolah"
+            width="400"
+            height="192"
+            loading="lazy"
+            decoding="async"
             class="w-full h-48 object-cover"
           />
           <div class="p-6">
@@ -620,6 +755,11 @@
         >
           <img
             src="assets/img/Bigbike Shop.png"
+            alt="Tangkapan layar BigBike Shop Admin Dashboard"
+            width="400"
+            height="192"
+            loading="lazy"
+            decoding="async"
             class="w-full h-48 object-cover"
           />
           <div class="p-6">
@@ -638,14 +778,24 @@
         <div
           class="relative bg-neutral-900 border border-blue-500 rounded-2xl overflow-hidden shadow-lg transition duration-300"
         >
-          <!-- LINK OVERLAY (tak terlihat tapi bisa diklik) -->
+          <!-- LINK OVERLAY -->
           <a
             href="https://drive.google.com/drive/folders/14ETh6O-jNTI2xxIRhHyzpBrzl2qpCGsI"
             target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Lihat dokumentasi foto Danone Aqua"
             class="absolute inset-0 z-10"
           ></a>
 
-          <img src="assets/img/_MG_2901.JPG" class="w-full h-48 object-cover" />
+          <img
+            src="assets/img/_MG_2901.JPG"
+            alt="Dokumentasi acara Danone Aqua"
+            width="400"
+            height="192"
+            loading="lazy"
+            decoding="async"
+            class="w-full h-48 object-cover"
+          />
 
           <div class="p-6">
             <h3 class="text-xl font-bold mb-2 text-white drop-shadow-md">
@@ -661,17 +811,28 @@
           </div>
         </div>
 
+        <!-- CARD 4 -->
         <div
           class="relative bg-neutral-900 border border-blue-500 rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition duration-300"
         >
-          <!-- LINK OVERLAY (tak terlihat tapi bisa diklik) -->
+          <!-- LINK OVERLAY -->
           <a
             href="https://drive.google.com/drive/folders/1ye409ezc67fQwhQShvg2fOEH8VxcBZvH"
             target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Lihat dokumentasi foto PT Vanco Mas Sejahtera"
             class="absolute inset-0 z-10"
           ></a>
 
-          <img src="assets/img/DSC07468.jpg" class="w-full h-48 object-cover" />
+          <img
+            src="assets/img/DSC07468.jpg"
+            alt="Dokumentasi acara PT Vanco Mas Sejahtera"
+            width="400"
+            height="192"
+            loading="lazy"
+            decoding="async"
+            class="w-full h-48 object-cover"
+          />
 
           <div class="p-6">
             <h3 class="text-xl font-bold mb-2 text-white drop-shadow-md">
@@ -681,8 +842,8 @@
             <p class="text-gray-400 text-sm">
               My responsibility was documenting the company outing and fun games
               activities. I captured important moments and created visual
-              documentation of the event to highlight the team’s experience and
-              engagement
+              documentation of the event to highlight the team's experience and
+              engagement.
             </p>
           </div>
         </div>
@@ -699,6 +860,11 @@
             >
               <img
                 src="assets/img/REK00751.jpg"
+                alt="Hasil dokumentasi foto"
+                width="320"
+                height="224"
+                loading="lazy"
+                decoding="async"
                 class="w-full h-56 object-cover transition duration-500 group-hover:scale-110"
               />
             </div>
@@ -711,6 +877,11 @@
             >
               <img
                 src="assets/img/_MG_1223.JPG"
+                alt="Hasil dokumentasi foto"
+                width="320"
+                height="224"
+                loading="lazy"
+                decoding="async"
                 class="w-full h-56 object-cover transition duration-500 group-hover:scale-110"
               />
             </div>
@@ -723,6 +894,11 @@
             >
               <img
                 src="assets/img/_MG_2775.JPG"
+                alt="Hasil dokumentasi foto"
+                width="320"
+                height="224"
+                loading="lazy"
+                decoding="async"
                 class="w-full h-56 object-cover transition duration-500 group-hover:scale-110"
               />
             </div>
@@ -735,6 +911,11 @@
             >
               <img
                 src="assets/img/_MG_1225.JPG"
+                alt="Hasil dokumentasi foto"
+                width="320"
+                height="224"
+                loading="lazy"
+                decoding="async"
                 class="w-full h-56 object-cover transition duration-500 group-hover:scale-110"
               />
             </div>
@@ -746,6 +927,11 @@
             >
               <img
                 src="assets/img/_MG_1317.JPG"
+                alt="Hasil dokumentasi foto"
+                width="320"
+                height="224"
+                loading="lazy"
+                decoding="async"
                 class="w-full h-56 object-cover transition duration-500 group-hover:scale-110"
               />
             </div>
@@ -762,6 +948,11 @@
             >
               <img
                 src="assets/img/DSC08023.jpg"
+                alt="Hasil dokumentasi foto"
+                width="320"
+                height="224"
+                loading="lazy"
+                decoding="async"
                 class="w-full h-56 object-cover transition duration-500 group-hover:scale-110"
               />
             </div>
@@ -773,6 +964,11 @@
             >
               <img
                 src="assets/img/DSC08027.jpg"
+                alt="Hasil dokumentasi foto"
+                width="320"
+                height="224"
+                loading="lazy"
+                decoding="async"
                 class="w-full h-56 object-cover transition duration-500 group-hover:scale-110"
               />
             </div>
@@ -784,6 +980,11 @@
             >
               <img
                 src="assets/img/DSC07899.jpg"
+                alt="Hasil dokumentasi foto"
+                width="320"
+                height="224"
+                loading="lazy"
+                decoding="async"
                 class="w-full h-56 object-cover transition duration-500 group-hover:scale-110"
               />
             </div>
@@ -796,6 +997,11 @@
             >
               <img
                 src="assets/img/DSC08174.jpg"
+                alt="Hasil dokumentasi foto"
+                width="320"
+                height="224"
+                loading="lazy"
+                decoding="async"
                 class="w-full h-56 object-cover transition duration-500 group-hover:scale-110"
               />
             </div>
@@ -807,6 +1013,11 @@
             >
               <img
                 src="assets/img/DSC07665.jpg"
+                alt="Hasil dokumentasi foto"
+                width="320"
+                height="224"
+                loading="lazy"
+                decoding="async"
                 class="w-full h-56 object-cover transition duration-500 group-hover:scale-110"
               />
             </div>
@@ -815,26 +1026,27 @@
       </div>
     </section>
 
-    <script src="script.js" defer></script>
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script>
-      AOS.init();
-    </script>
-    <audio id="bgMusic" autoplay loop muted playsinline preload="auto">
+    <audio id="bgMusic" loop muted playsinline preload="none">
       <source src="assets/music/multo.mp3" type="audio/mpeg" />
     </audio>
 
     <!-- VINYL MUSIC BUTTON -->
     <div
       id="musicPlayer"
+      role="button"
+      tabindex="0"
+      aria-label="Putar atau jeda musik latar"
       class="fixed bottom-6 right-6 w-16 h-16 rounded-full cursor-pointer z-50"
     >
       <div
         id="disc"
         class="w-full h-full rounded-full shadow-lg flex items-center justify-center"
       >
-        <!-- titik tengah vinyl -->
-        <span id="musicIcon" class="text-white absolute text-sm font-bold">
+        <span
+          id="musicIcon"
+          class="text-white absolute text-sm font-bold"
+          aria-hidden="true"
+        >
           🎵
         </span>
       </div>
@@ -842,14 +1054,20 @@
 
     <footer class="relative w-full py-8 text-white text-center overflow-hidden">
       <div class="relative z-10 flex items-center justify-center space-x-2">
-        <!-- Logo copyright -->
         <span class="text-sm">©</span>
-        <!-- Nama -->
+        <span class="font-semibold" id="year"></span>
         <span class="font-semibold">Mas Apif Muliansyah</span>
       </div>
 
       <!-- Background animasi -->
-      <div class="absolute inset-0 bg-blue-800 animate-gradient"></div>
+      <div
+        class="absolute inset-0 bg-blue-800 animate-gradient"
+        aria-hidden="true"
+      ></div>
     </footer>
+
+    <!-- Scripts di akhir body, defer, biar tidak blocking render -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
+    <script src="script.js" defer></script>
   </body>
 </html>

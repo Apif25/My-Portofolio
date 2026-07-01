@@ -6,6 +6,7 @@ body {
   font-family: "Poppins", sans-serif;
   overflow-x: hidden;
 }
+
 .reveal {
   opacity: 0;
   transform: translateY(60px);
@@ -15,6 +16,7 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+
 .marquee {
   animation: marqueeLeft 15s linear infinite;
 }
@@ -90,17 +92,6 @@ body {
   animation: blueGlow 2s ease infinite;
 }
 
-/* tombol pembungkus */
-#musicBtn {
-  position: fixed;
-  right: 25px;
-  bottom: 25px;
-  z-index: 9999;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
 /* tampilan piringan */
 #disc {
   width: 70px;
@@ -117,13 +108,11 @@ body {
   transition: 0.3s;
 }
 
-/* hover biar keren */
 #disc:hover {
   transform: scale(1.08);
   box-shadow: 0 0 25px rgba(37, 99, 235, 0.5);
 }
 
-/* animasi putar */
 @keyframes spinDisc {
   from {
     transform: rotate(0deg);
@@ -133,17 +122,18 @@ body {
   }
 }
 
-/* class saat musik play */
 .spinning {
   animation: spinDisc 4s linear infinite;
 }
 
 /* lebar tiap card biar rapi horizontal */
 .projectItem {
-  min-width: 320px;
+  min-width: 260px;
+  max-width: 320px;
+  flex: 1 0 auto;
 }
 
-/* animasi jalan */
+/* BARIS ATAS */
 @keyframes scrollProjects {
   from {
     transform: translateX(0);
@@ -155,25 +145,7 @@ body {
 
 .animate-projects {
   animation: scrollProjects 25s linear infinite;
-}
-
-/* pause saat hover biar UX cakep */
-.animate-projects:hover {
-  animation-play-state: paused;
-}
-
-/* BARIS ATAS (sudah ada) */
-@keyframes scrollProjects {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-projects {
-  animation: scrollProjects 25s linear infinite;
+  will-change: transform;
 }
 
 /* BARIS BAWAH (KEBALIKAN) */
@@ -188,40 +160,13 @@ body {
 
 .animate-projects-reverse {
   animation: scrollProjectsReverse 25s linear infinite;
+  will-change: transform;
 }
 
-/* pause saat hover */
+/* pause saat hover biar UX cakep */
 .animate-projects:hover,
 .animate-projects-reverse:hover {
   animation-play-state: paused;
-}
-
-/* Background biru gelap dengan overlay animasi */
-.splash-bg {
-  background: linear-gradient(
-    120deg,
-    #0a1e3a,
-    #0f172a,
-    #1e3a8a
-  ); /* biru gelap kontras */
-  background-size: 300% 300%;
-  position: absolute;
-  inset: 0;
-  animation: bgMove 6s ease infinite;
-  z-index: 0;
-}
-
-/* Keyframes bergerak seperti di card About Me */
-@keyframes bgMove {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
 }
 
 /* Lingkaran pulsate */
@@ -260,7 +205,7 @@ body {
   animation: fadeIn 1s forwards;
 }
 
-/* Keyframes untuk background bergerak */
+/* Footer gradient bergerak */
 @keyframes gradientMove {
   0% {
     background-position: 0% 50%;
@@ -279,7 +224,7 @@ body {
   animation: gradientMove 15s ease infinite;
 }
 
-/* Flip Card Styles */
+/* Flip Card Styles (Skills tab) */
 .flip-card {
   background-color: transparent;
   width: 100%;
@@ -315,7 +260,7 @@ body {
 }
 
 .flip-card-front {
-  background-color: transparent; /* Changed from #fff to transparent */
+  background-color: transparent;
 }
 
 .flip-card-back {
@@ -334,16 +279,11 @@ body {
   font-weight: 600;
 }
 
-/* Hover effect for flip cards */
 .flip-card:hover .flip-card-inner {
   box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
 }
 
-.flip-card {
-  perspective: 1000px;
-  cursor: pointer;
-}
-
+/* Flip Card Styles (Certificate tab) */
 .flip-inner {
   position: relative;
   width: 100%;
@@ -366,4 +306,16 @@ body {
 
 .flip-back {
   transform: rotateY(180deg);
+}
+
+/* Reduce motion untuk pengguna yang sensitif terhadap animasi */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
